@@ -36,12 +36,16 @@ public class Board {
         return true;
     }
 
-    public void UserBoard(int row, int column) {
+    public void UserBoard(int row, int column,boolean isMachine) {
         game[row][column] = "";
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
                 if (row == i && column == j) {
-                    game[row][column] = "x";
+                    if(isMachine){
+                        game[row][column] = "o";
+                    }else {
+                        game[row][column] = "x";
+                    }
                     System.out.print(game[row][column] + " ");
                 } else {
                     if(game[i][j] == null ){

@@ -9,38 +9,31 @@ public class Play {
 
     Board board = new Board();
 
-    public  void showGame(int row, int column) {
-        try{
+    public void showGame(int row, int column) {
 
-            if(board.validateGame(row,column)){
-                board.UserBoard(row,column);
-            }else {
-                System.out.println("Esta linha e coluna ja esta  preenchidas");
-            }
+        if (board.validateGame(row, column)) {
+            System.out.println("Estado atual do jogo");
+            board.UserBoard(row, column, false);
 
-        }catch (Exception e) {
-            System.out.println("");
-            System.out.println("Voce possivelmente digitou linha ou coluna invalida");
-            System.out.println("\nAs colunas e linhas começam no zero e terminam no 2");
-
+        } else {
+            System.out.println("Esta linha e coluna ja esta  preenchidas");
         }
 
     }
 
 
-    public  void easy() {
+    public void easy() {
         int row = new Random().nextInt(3);
         int column = new Random().nextInt(3);
 
-        if(board.validateGame(row,column)){
-            System.out.println("Linha e coluna escolhido pela maquina");
-            board.UserBoard(row,column);
-        }else {
+        if (board.validateGame(row, column)) {
+            System.out.println("Maquina jogando");
+            board.UserBoard(row, column, true);
+        } else {
             easy();
         }
 
     }
-
 
 
 }
