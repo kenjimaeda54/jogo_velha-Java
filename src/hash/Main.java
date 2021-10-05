@@ -2,7 +2,7 @@ package hash;
 
 import hash.board.Board;
 import hash.menu.Menu;
-import hash.play.Play;
+
 
 import java.util.Scanner;
 
@@ -23,8 +23,9 @@ public class Main {
         System.out.println("Agora escolha a linha que deseja jogar -->");
         int row = sc.nextInt();
         menu.setRow(row);
-        menu.buildGame();
-
+        System.out.println("Escolha o modo de jogo, 1 para facil 2 para dificil");
+        int chose = sc.nextInt();
+        menu.mode(chose);
         sc.close();
     }
 

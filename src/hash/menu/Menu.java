@@ -1,11 +1,14 @@
 package hash.menu;
 
 
+
+
 import hash.play.Play;
 
+
 public class Menu {
-    private   int  row;
-    private   int column;
+    protected    int  row;
+    protected   int column;
 
     Play play = new Play();
 
@@ -17,8 +20,14 @@ public class Menu {
         this.column = column;
     }
 
-    public void buildGame() {
-        play.showGame(row,column);
+
+    public void mode(int chose  ) {
+        if(chose == 1){
+            play.showGame(row,column);
+            play.easy();
+        }else{
+
+        }
 
     }
 
