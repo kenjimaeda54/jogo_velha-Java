@@ -1,11 +1,58 @@
 package hash.board;
 
+import java.util.Arrays;
+
 public class Board {
     protected final String[][] game = new String[3][3];
 
 
     private int i = 0;
     private int j = 0;
+
+    public boolean validateWin() {
+        if (i < 3) {
+            if (j < 3) {
+
+                if (validateFieldWin(i, j)) {
+                    return true;
+                }
+                j += 1;
+            }
+            i += 1;
+            validateWin();
+        } else {
+            i = 0;
+            j = 0;
+        }
+
+        return false;
+
+    }
+
+    private boolean validateFieldWin(int row, int column) {
+       if( row < 3 ){
+           if(game[row][0]  == "X" && game[row][1] == "X" && game[row][2] == "X"){
+              return true;
+           }
+           if(game[row][0] == "O"  && game[row][1] == "O" && game[row][2] == "O"){
+               return true;
+           }
+           row += 1;
+           validateFieldWin(row +=1,column);
+       }
+        if( column < 3 ){
+            if(game[0][column]  == "X" && game[1][column] == "X" && game[2][column] == "X"){
+                return true;
+            }
+            if(game[0][column] == "O"  && game[1][column] == "O" && game[2][column] == "O"){
+                return true;
+            }
+            column += 1;
+            validateFieldWin(row,column+=1);
+        }
+
+        return false;
+    }
 
     public boolean validateGame(int row, int column) {
         if (i < 3) {
@@ -25,9 +72,9 @@ public class Board {
         return true;
     }
 
-    public boolean validateField(int row, int column, int acc) {
+    private boolean validateField(int row, int column, int acc) {
         if (acc < 3) {
-            if (game[row][column] == null || game[row][column] == "---"  ) {
+            if (game[row][column] == null || game[row][column] == "---") {
                 validateField(row, column, acc + 1);
             } else {
                 return false;
@@ -36,19 +83,18 @@ public class Board {
         return true;
     }
 
-    public void UserBoard(int row, int column,boolean isMachine) {
-        game[row][column] = "";
+    public void UserBoard(int row, int column, boolean isMachine) {
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
                 if (row == i && column == j) {
-                    if(isMachine){
-                        game[row][column] = "o";
-                    }else {
-                        game[row][column] = "x";
+                    if (isMachine) {
+                        game[row][column] = "O";
+                    } else {
+                        game[row][column] = "X";
                     }
                     System.out.print(game[row][column] + " ");
                 } else {
-                    if(game[i][j] == null ){
+                    if (game[i][j] == null) {
                         game[i][j] = "---";
 
                     }

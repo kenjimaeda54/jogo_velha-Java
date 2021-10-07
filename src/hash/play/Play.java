@@ -26,19 +26,28 @@ public class Play {
 
     }
 
+    public boolean haveWin() {
+       if(board.validateWin()){
+           return true;
+       }
+       return false;
+    }
 
-    public void easy() {
+
+    public boolean easy() {
         int row = new Random().nextInt(3);
         int column = new Random().nextInt(3);
 
         if (board.validateGame(row, column)) {
             System.out.println("Maquina jogando");
             board.UserBoard(row, column, true);
-
+            if(board.validateWin()){
+                return true;
+            }
         } else {
             easy();
         }
-
+        return false;
     }
 
 

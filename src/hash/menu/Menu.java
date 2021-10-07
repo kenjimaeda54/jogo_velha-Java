@@ -31,20 +31,30 @@ public class Menu {
 
     }
 
-    public void updateCycle(int chose, int row, int column) {
-        mode(chose, row, column);
-        if(this.updateGame < 3 ){
+    public void updateCycle(int chose) {
+        if(chose == 3){
+            this.updateGame = 5;
+            return;
+        };
+        if (this.updateGame < 4) {
             System.out.println("Insira proxima coluna");
             int nextColumn = sc.nextInt();
             System.out.println("Insira proxima linha");
             int nextRow = sc.nextInt();
-            mode(chose, nextRow, nextColumn);
+            if(play.haveWin()){
+                String win = "Parabens voce e o nosso vencedor";
+                endCycLe(win);
+                return;
+            }else{
+                mode(chose, nextRow, nextColumn);
+            }
+
             this.updateGame += 1;
-        }else{
+            updateCycle(chose);
+        } else {
             this.updateGame = 0;
             return;
         }
-
 
     }
 
@@ -52,12 +62,21 @@ public class Menu {
     private void mode(int chose, int row, int column) {
         if (chose == 1) {
             play.showGame(row, column);
-            play.easy();
+            if(play.easy()){
+                String win = "Infelizmente voce perdeu";
+                endCycLe(win);
+            }
         } else {
             return;
         }
 
     }
+
+    private void endCycLe(String win){
+        System.out.println(win);
+        updateCycle(3);
+    }
+
 
 
 }
