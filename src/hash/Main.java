@@ -19,13 +19,18 @@ public class Main {
         System.out.println("Linhas e colunas começam em 0 e terminam no 2");
         System.out.println("Escolha primeiro a coluna que deseja jogar --> ");
         int column = sc.nextInt();
-        menu.setColumn(column);
         System.out.println("Agora escolha a linha que deseja jogar -->");
         int row = sc.nextInt();
-        menu.setRow(row);
         System.out.println("Escolha o modo de jogo, 1 para facil 2 para dificil");
         int chose = sc.nextInt();
-        menu.mode(chose);
+        menu.startCycle(chose,row,column);
+        System.out.println("Linhas e colunas começam em 0 e terminam no 2");
+        System.out.println("Escolha novamente uma coluna para jogar --> ");
+        int nextColumn = sc.nextInt();
+        System.out.println("Agora escolha a linha que deseja jogar -->");
+        int nextRow = sc.nextInt();
+        menu.updateCycle(chose,nextRow,nextColumn);
+
         sc.close();
     }
 
