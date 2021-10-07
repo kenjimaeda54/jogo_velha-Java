@@ -25,25 +25,30 @@ public class Menu {
 
             System.out.println("");
             System.out.println("Voce possivelmente digitou linha ou coluna invalida");
-            System.out.println("\nAs colunas e linhas começam no zero e terminam no 2");
-
+            System.out.println("As colunas e linhas começam no zero e terminam no 2");
+            System.out.println("\nJa que e sua primeira interiracao,precisara iniciar novamente o jogo");
+            updateCycle(3);
         }
 
     }
 
     public void updateCycle(int statusGame) {
-        try {
             if (statusGame == 3) {
                 this.updateGame = 5;
                 return;
             }
             ;
             if (this.updateGame < 3) {
-                System.out.println("Insira proxima coluna");
-                int nextColumn = sc.nextInt();
-                System.out.println("Insira proxima linha");
-                int nextRow = sc.nextInt();
-                mode(chose, nextRow, nextColumn);
+                try{
+                    System.out.println("Insira proxima coluna");
+                    int nextColumn = sc.nextInt();
+                    System.out.println("Insira proxima linha");
+                    int nextRow = sc.nextInt();
+                    mode(statusGame, nextRow, nextColumn);
+                }catch (Exception e){
+                    System.out.println("Digitou coluna ou linha invalida precisa repetir");
+                    updateCycle(statusGame);
+                }
                 if (play.haveWin()) {
                     String win = "Parabens voce e o nosso vencedor";
                     endCycLe(win);
@@ -51,18 +56,12 @@ public class Menu {
                 }
 
                 this.updateGame += 1;
-                updateCycle(chose);
-            } else if (this.updateGame != 5) {
+                updateCycle(statusGame);
+            } else if(this.updateGame == 3)  {
                 System.out.println("Sem nenhum vencedor");
                 this.updateGame = 0;
                 return;
             }
-
-        } catch (Exception e) {
-            System.out.println("Escolheu algo inesperado,precisara jogar novamente");
-            updateCycle(chose);
-            return;
-        }
 
 
     }
@@ -86,6 +85,7 @@ public class Menu {
                 return;
             }
             System.out.println("Escolheu modo que nao existe ");
+            updateCycle(3);
             return;
         }
 
