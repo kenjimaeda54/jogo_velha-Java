@@ -31,30 +31,39 @@ public class Menu {
 
     }
 
-    public void updateCycle(int chose) {
-        if(chose == 3){
-            this.updateGame = 5;
-            return;
-        };
-        if (this.updateGame < 4) {
-            System.out.println("Insira proxima coluna");
-            int nextColumn = sc.nextInt();
-            System.out.println("Insira proxima linha");
-            int nextRow = sc.nextInt();
-            if(play.haveWin()){
-                String win = "Parabens voce e o nosso vencedor";
-                endCycLe(win);
+    public void updateCycle(int statusGame) {
+        try {
+            if (statusGame == 3) {
+                this.updateGame = 5;
                 return;
-            }else{
+            }
+            ;
+            if (this.updateGame < 3) {
+                System.out.println("Insira proxima coluna");
+                int nextColumn = sc.nextInt();
+                System.out.println("Insira proxima linha");
+                int nextRow = sc.nextInt();
                 mode(chose, nextRow, nextColumn);
+                if (play.haveWin()) {
+                    String win = "Parabens voce e o nosso vencedor";
+                    endCycLe(win);
+                    return;
+                }
+
+                this.updateGame += 1;
+                updateCycle(chose);
+            } else if (this.updateGame != 5) {
+                System.out.println("Sem nenhum vencedor");
+                this.updateGame = 0;
+                return;
             }
 
-            this.updateGame += 1;
+        } catch (Exception e) {
+            System.out.println("Escolheu algo inesperado,precisara jogar novamente");
             updateCycle(chose);
-        } else {
-            this.updateGame = 0;
             return;
         }
+
 
     }
 
@@ -62,21 +71,30 @@ public class Menu {
     private void mode(int chose, int row, int column) {
         if (chose == 1) {
             play.showGame(row, column);
-            if(play.easy()){
-                String win = "Infelizmente voce perdeu";
-                endCycLe(win);
+            if (play.haveWin()) {
+                return;
+            } else {
+                if (play.easy()) {
+                    String win = "Infelizmente voce perdeu";
+                    endCycLe(win);
+                }
             }
         } else {
+            if (chose == 2) {
+                System.out.println("Por enquanto modo hard nao esta disponível");
+                updateCycle(3);
+                return;
+            }
+            System.out.println("Escolheu modo que nao existe ");
             return;
         }
 
     }
 
-    private void endCycLe(String win){
+    private void endCycLe(String win) {
         System.out.println(win);
         updateCycle(3);
     }
-
 
 
 }
