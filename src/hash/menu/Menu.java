@@ -7,9 +7,6 @@ import java.util.Scanner;
 
 
 public class Menu {
-    protected int row;
-    protected int column;
-    protected int chose;
     protected int updateGame = 0;
 
     Play play = new Play();

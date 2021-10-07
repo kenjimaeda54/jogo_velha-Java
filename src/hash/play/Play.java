@@ -12,7 +12,7 @@ public class Play {
 
 
     public void showGame(int row, int column) {
-        if (board.validateGame(row, column)) {
+        if (board.validateBoard(row, column)) {
             System.out.println("Estado atual do jogo");
             board.UserBoard(row, column, false);
         } else {
@@ -27,7 +27,7 @@ public class Play {
     }
 
     public boolean haveWin() {
-       if(board.validateWin()){
+       if(board.validateWinBoard()){
            return true;
        }
        return false;
@@ -38,10 +38,10 @@ public class Play {
         int row = new Random().nextInt(3);
         int column = new Random().nextInt(3);
 
-        if (board.validateGame(row, column)) {
+        if (board.validateBoard(row, column)) {
             System.out.println("Maquina jogando");
             board.UserBoard(row, column, true);
-            if(board.validateWin()){
+            if(board.validateWinBoard()){
                 return true;
             }
         } else {

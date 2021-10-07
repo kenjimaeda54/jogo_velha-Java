@@ -9,7 +9,7 @@ public class Board {
     private int i = 0;
     private int j = 0;
 
-    public boolean validateWin() {
+    public boolean validateWinBoard() {
         if (i < 3) {
             if (j < 3) {
 
@@ -19,7 +19,7 @@ public class Board {
                 j += 1;
             }
             i += 1;
-            validateWin();
+            validateWinBoard();
         } else {
             i = 0;
             j = 0;
@@ -54,7 +54,7 @@ public class Board {
         return false;
     }
 
-    public boolean validateGame(int row, int column) {
+    public boolean validateBoard(int row, int column) {
         if (i < 3) {
             if (j < 3) {
 
@@ -63,7 +63,7 @@ public class Board {
                 }
             }
             i += 1;
-            validateGame(row, column);
+            validateBoard(row, column);
         } else {
             i = 0;
             j = 0;
