@@ -30,35 +30,34 @@ public class Menu {
     }
 
     public void updateCycle(int statusGame) {
-            if (statusGame == 3) {
-                this.updateGame = 5;
-                return;
-            }
-            ;
-            if (this.updateGame < 3) {
-                try{
-                    System.out.println("Insira proxima coluna");
-                    int nextColumn = sc.nextInt();
-                    System.out.println("Insira proxima linha");
-                    int nextRow = sc.nextInt();
-                    mode(statusGame, nextRow, nextColumn);
-                }catch (Exception e){
-                    System.out.println("Digitou coluna ou linha invalida precisa repetir");
-                    updateCycle(statusGame);
-                }
-                if (play.haveWin()) {
-                    String win = "Parabens voce e o nosso vencedor";
-                    endCycLe(win);
-                    return;
-                }
-
-                this.updateGame += 1;
+        if (statusGame == 3) {
+            this.updateGame = 7;
+            return;
+        }
+        ;
+        if (this.updateGame < 4) {
+            try {
+                System.out.println("Insira proxima coluna");
+                int nextColumn = sc.nextInt();
+                System.out.println("Insira proxima linha");
+                int nextRow = sc.nextInt();
+                mode(statusGame, nextRow, nextColumn);
+            } catch (Exception e) {
+                System.out.println("Digitou coluna ou linha invalida precisa repetir");
                 updateCycle(statusGame);
-            } else if(this.updateGame == 3)  {
-                System.out.println("Sem nenhum vencedor");
-                this.updateGame = 0;
+            }
+            if (play.haveWin() != "") {
+                String winner = play.haveWin();
+                endCycLe(winner);
                 return;
             }
+
+            this.updateGame += 1;
+            updateCycle(statusGame);
+        } else if (this.updateGame == 4) {
+            System.out.println("Sem nenhum vencedor");
+            return;
+        }
 
 
     }
@@ -67,14 +66,12 @@ public class Menu {
     private void mode(int chose, int row, int column) {
         if (chose == 1) {
             play.showGame(row, column);
-            if (play.haveWin()) {
+            if (play.easy() != "") {
+                String winner = play.haveWin();
+                endCycLe(winner);
                 return;
-            } else {
-                if (play.easy()) {
-                    String win = "Infelizmente voce perdeu";
-                    endCycLe(win);
-                }
             }
+
         } else {
             if (chose == 2) {
                 System.out.println("Por enquanto modo hard nao esta disponível");

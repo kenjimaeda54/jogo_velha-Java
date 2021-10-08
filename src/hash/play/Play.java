@@ -6,6 +6,7 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class Play {
+    private int repeatCycle;
 
     Board board = new Board();
     Scanner sc = new Scanner(System.in);
@@ -21,35 +22,48 @@ public class Play {
             int nextColumn = sc.nextInt();
             System.out.println("Insira uma nova lina");
             int nextRow = sc.nextInt();
-            showGame(nextRow,nextColumn);
+            showGame(nextRow, nextColumn);
         }
 
     }
 
-    public boolean haveWin() {
-       if(board.validateWinBoard()){
-           return true;
-       }
-       return false;
+    public String haveWin() {
+        if (board.validateWinBoard() != "") {
+            String winner = board.validateWinBoard();
+            return winner;
+        }
+        return "";
     }
 
 
-    public boolean easy() {
+    public String easy() {
         int row = new Random().nextInt(3);
         int column = new Random().nextInt(3);
 
         if (board.validateBoard(row, column)) {
             System.out.println("Maquina jogando");
             board.UserBoard(row, column, true);
-            if(board.validateWinBoard()){
-                return true;
+            if (board.validateWinBoard() != "") {
+                String winner = board.validateWinBoard();
+                return winner;
             }
         } else {
-            easy();
-        }
-        return false;
-    }
+            if (haveWin() != "") {
+                String winner = board.validateWinBoard();
+                return winner;
 
+            }
+            if (board.game.length > this.repeatCycle) {
+                easy();
+                this.repeatCycle += 1;
+
+            } else {
+                return "";
+            }
+
+        }
+        return "";
+    }
 
 
 }

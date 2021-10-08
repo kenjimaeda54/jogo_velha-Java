@@ -3,18 +3,19 @@ package hash.board;
 import java.util.Arrays;
 
 public class Board {
-    protected final String[][] game = new String[3][3];
+    public   String[][] game = new String[3][3];
 
 
     private int i = 0;
     private int j = 0;
 
-    public boolean validateWinBoard() {
+    //verificar se vai ate porque vai ate o 3 ou nao
+    public String validateWinBoard() {
         if (i < 3) {
             if (j < 3) {
-
-                if (validateFieldWin(i, j)) {
-                    return true;
+                String winner = validateFieldWin(i, j);
+                if (winner != "") {
+                    return winner;
                 }
                 j += 1;
             }
@@ -25,33 +26,34 @@ public class Board {
             j = 0;
         }
 
-        return false;
+        return "";
 
     }
 
-    private boolean validateFieldWin(int row, int column) {
+    private String validateFieldWin(int row, int column) {
        if( row < 3 ){
            if(game[row][0]  == "X" && game[row][1] == "X" && game[row][2] == "X"){
-              return true;
+              return "Parabens voce e nosso vencedor";
            }
            if(game[row][0] == "O"  && game[row][1] == "O" && game[row][2] == "O"){
-               return true;
+               return "Infelizmente voce perdeu";
            }
            row += 1;
            validateFieldWin(row +=1,column);
        }
         if( column < 3 ){
             if(game[0][column]  == "X" && game[1][column] == "X" && game[2][column] == "X"){
-                return true;
+                return "Parabens voce e nosso vencedor";
+
             }
             if(game[0][column] == "O"  && game[1][column] == "O" && game[2][column] == "O"){
-                return true;
+                return "Infelizmente voce perdeu";
             }
             column += 1;
             validateFieldWin(row,column+=1);
         }
 
-        return false;
+        return "";
     }
 
     public boolean validateBoard(int row, int column) {
