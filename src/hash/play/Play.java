@@ -49,11 +49,11 @@ public class Play {
             }
         } else {
             if (haveWin() != "") {
-                String winner = board.validateWinBoard();
+                String winner = haveWin();
                 return winner;
 
             }
-            if (board.game.length > this.repeatCycle) {
+            if (this.repeatCycle < 50) {
                 this.repeatCycle += 1;
                 easy();
 

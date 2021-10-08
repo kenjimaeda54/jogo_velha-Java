@@ -17,16 +17,11 @@ public class Menu {
 
 
     public void startCycle(int chose, int row, int column) {
-        try {
-            mode(chose, row, column);
-
-        } catch (Exception e) {
-
-            System.out.println("");
-            System.out.println("Voce possivelmente digitou linha ou coluna invalida");
-            System.out.println("As colunas e linhas começam no zero e terminam no 2");
-            System.out.println("\nJa que e sua primeira interiracao,precisara iniciar novamente o jogo");
+        if (row > 2 || column > 2) {
+            System.out.println("Digitou colunas ou linhas invalidas");
             updateCycle(3);
+        } else {
+            mode(chose, row, column);
         }
 
     }
@@ -37,19 +32,24 @@ public class Menu {
             return;
         }
         ;
-        if (this.updateGame < 4) {
-            try {
-                System.out.println("Insira proxima coluna");
-                int nextColumn = sc.nextInt();
-                System.out.println("Insira proxima linha");
-                int nextRow = sc.nextInt();
-                this.updateGame += 1;
-                mode(statusGame, nextRow, nextColumn);
-            } catch (Exception e) {
-                System.out.println("Digitou coluna ou linha invalida precisa repetir");
+        if (play.haveWin() != "" && this.updateGame != 7) {
+            String winner = play.haveWin();
+            endCycLe(winner);
+            return;
+        } else if (this.updateGame < 4) {
+            System.out.println("Insira proxima coluna");
+            int nextColumn = sc.nextInt();
+            System.out.println("Insira proxima linha");
+            int nextRow = sc.nextInt();
+            if(nextRow > 2 || nextColumn > 2){
+                System.out.println("Digitou colunas ou linhas erradas");
+                System.out.println("Linhas e colunas comecam no 0 e terminam no 2");
                 updateCycle(statusGame);
+                return;
             }
-        } else if(this.updateGame == 4 ) {
+            this.updateGame += 1;
+            mode(statusGame, nextRow, nextColumn);
+        } else if (this.updateGame == 4) {
 //            if (play.haveWin() != "") {
 ////                String winner = play.haveWin();
 ////                endCycLe(winner);
@@ -66,13 +66,15 @@ public class Menu {
     private void mode(int chose, int row, int column) {
         if (chose == 1) {
             play.showGame(row, column);
-            if (play.easy() != "") {
-                String winner = play.haveWin();
-                endCycLe(winner);
-                return;
-            } else {
-                updateCycle(1);
-            }
+            play.easy();
+            updateCycle(1);
+//            if (play.easy() != "") {
+//                String winner = play.haveWin();
+//                endCycLe(winner);
+//                return;
+//            } else {
+//
+//            }
 
         } else {
             if (chose == 2) {
@@ -84,6 +86,7 @@ public class Menu {
             updateCycle(3);
             return;
         }
+
 
     }
 
