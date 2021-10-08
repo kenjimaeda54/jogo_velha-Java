@@ -94,13 +94,13 @@ public class Board {
                     } else {
                         game[row][column] = "X";
                     }
-                    System.out.print(game[row][column] + " ");
+                    System.out.print(game[row][column] + "     ");
                 } else {
                     if (game[i][j] == null) {
                         game[i][j] = "---";
 
                     }
-                    System.out.print(game[i][j] + " ");
+                    System.out.print(game[i][j] + "     ");
                 }
             }
             System.out.println("");
@@ -136,7 +136,7 @@ public class Board {
 
     private void printBoard(int oneDimension, int twoDimension) {
         if (twoDimension < 3) {
-            System.out.print(game[oneDimension][twoDimension] + " ");
+            System.out.print(game[oneDimension][twoDimension] + "");
             printBoard(oneDimension, twoDimension + 1);
         }
     }

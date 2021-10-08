@@ -43,7 +43,7 @@ public class Play {
         if (board.validateBoard(row, column)) {
             System.out.println("Maquina jogando");
             board.UserBoard(row, column, true);
-            if (board.validateWinBoard() != "") {
+            if (haveWin() != "") {
                 String winner = board.validateWinBoard();
                 return winner;
             }
@@ -54,10 +54,11 @@ public class Play {
 
             }
             if (board.game.length > this.repeatCycle) {
-                easy();
                 this.repeatCycle += 1;
+                easy();
 
             } else {
+                this.repeatCycle = 0;
                 return "";
             }
 

@@ -1,15 +1,17 @@
 package hash.menu;
 
 
+import hash.board.Board;
 import hash.play.Play;
 
 import java.util.Scanner;
 
 
 public class Menu {
-    protected int updateGame = 0;
+    private int updateGame;
 
     Play play = new Play();
+    Board board = new Board();
 
     Scanner sc = new Scanner(System.in);
 
@@ -41,20 +43,18 @@ public class Menu {
                 int nextColumn = sc.nextInt();
                 System.out.println("Insira proxima linha");
                 int nextRow = sc.nextInt();
+                this.updateGame += 1;
                 mode(statusGame, nextRow, nextColumn);
             } catch (Exception e) {
                 System.out.println("Digitou coluna ou linha invalida precisa repetir");
                 updateCycle(statusGame);
             }
-            if (play.haveWin() != "") {
-                String winner = play.haveWin();
-                endCycLe(winner);
-                return;
-            }
-
-            this.updateGame += 1;
-            updateCycle(statusGame);
-        } else if (this.updateGame == 4) {
+        } else if(this.updateGame == 4 ) {
+//            if (play.haveWin() != "") {
+////                String winner = play.haveWin();
+////                endCycLe(winner);
+//                return;
+//            }
             System.out.println("Sem nenhum vencedor");
             return;
         }
@@ -70,6 +70,8 @@ public class Menu {
                 String winner = play.haveWin();
                 endCycLe(winner);
                 return;
+            } else {
+                updateCycle(1);
             }
 
         } else {
