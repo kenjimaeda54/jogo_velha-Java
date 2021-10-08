@@ -36,7 +36,7 @@ public class Play {
     }
 
 
-    public String easy() {
+    public void easy() {
         int row = new Random().nextInt(3);
         int column = new Random().nextInt(3);
 
@@ -44,13 +44,11 @@ public class Play {
             System.out.println("Maquina jogando");
             board.UserBoard(row, column, true);
             if (haveWin() != "") {
-                String winner = board.validateWinBoard();
-                return winner;
+                return ;
             }
         } else {
             if (haveWin() != "") {
-                String winner = haveWin();
-                return winner;
+                return;
 
             }
             if (this.repeatCycle < 50) {
@@ -59,11 +57,9 @@ public class Play {
 
             } else {
                 this.repeatCycle = 0;
-                return "";
             }
 
         }
-        return "";
     }
 
 

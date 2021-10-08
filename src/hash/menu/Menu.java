@@ -50,11 +50,6 @@ public class Menu {
             this.updateGame += 1;
             mode(statusGame, nextRow, nextColumn);
         } else if (this.updateGame == 4) {
-//            if (play.haveWin() != "") {
-////                String winner = play.haveWin();
-////                endCycLe(winner);
-//                return;
-//            }
             System.out.println("Sem nenhum vencedor");
             return;
         }
@@ -68,14 +63,6 @@ public class Menu {
             play.showGame(row, column);
             play.easy();
             updateCycle(1);
-//            if (play.easy() != "") {
-//                String winner = play.haveWin();
-//                endCycLe(winner);
-//                return;
-//            } else {
-//
-//            }
-
         } else {
             if (chose == 2) {
                 System.out.println("Por enquanto modo hard nao esta disponível");
