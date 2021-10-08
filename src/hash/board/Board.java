@@ -33,21 +33,21 @@ public class Board {
     private String validateFieldWin(int row, int column) {
        if( row < 3 ){
            if(game[row][0]  == "X" && game[row][1] == "X" && game[row][2] == "X"){
-              return "Parabens voce e nosso vencedor";
+              return "Parabéns você e nosso vencedor";
            }
            if(game[row][0] == "O"  && game[row][1] == "O" && game[row][2] == "O"){
-               return "Infelizmente voce perdeu";
+               return "Infelizmente você perdeu";
            }
            row += 1;
            validateFieldWin(row +=1,column);
        }
         if( column < 3 ){
             if(game[0][column]  == "X" && game[1][column] == "X" && game[2][column] == "X"){
-                return "Parabens voce e nosso vencedor";
+                return "Parabéns você e nosso vencedor";
 
             }
             if(game[0][column] == "O"  && game[1][column] == "O" && game[2][column] == "O"){
-                return "Infelizmente voce perdeu";
+                return "Infelizmente você perdeu";
             }
             column += 1;
             validateFieldWin(row,column+=1);

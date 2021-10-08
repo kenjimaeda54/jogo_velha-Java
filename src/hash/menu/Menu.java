@@ -37,13 +37,13 @@ public class Menu {
             endCycLe(winner);
             return;
         } else if (this.updateGame < 4) {
-            System.out.println("Insira proxima coluna");
+            System.out.println("Insira próxima coluna");
             int nextColumn = sc.nextInt();
-            System.out.println("Insira proxima linha");
+            System.out.println("Insira próxima linha");
             int nextRow = sc.nextInt();
             if(nextRow > 2 || nextColumn > 2){
                 System.out.println("Digitou colunas ou linhas erradas");
-                System.out.println("Linhas e colunas comecam no 0 e terminam no 2");
+                System.out.println("Linhas e colunas começam no 0 e terminam no 2");
                 updateCycle(statusGame);
                 return;
             }
@@ -66,11 +66,11 @@ public class Menu {
             updateCycle(1);
         } else {
             if (chose == 2) {
-                System.out.println("Por enquanto modo hard nao esta disponível");
+                System.out.println("Por enquanto modo hard não esta disponível");
                 updateCycle(3);
                 return;
             }
-            System.out.println("Escolheu modo que nao existe ");
+            System.out.println("Escolheu modo que não existe");
             updateCycle(3);
             return;
         }

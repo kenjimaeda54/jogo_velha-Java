@@ -21,7 +21,7 @@ public class Main {
         int column = sc.nextInt();
         System.out.println("Agora escolha a linha que deseja jogar -->");
         int row = sc.nextInt();
-        System.out.println("Escolha o modo de jogo, 1 para facil 2 para dificil");
+        System.out.println("Escolha o modo de jogo, 1 para fácil 2 para difícil");
         int chose = sc.nextInt();
         menu.startCycle(chose, row, column);
         menu.updateCycle(chose);
