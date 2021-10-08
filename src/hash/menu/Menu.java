@@ -50,7 +50,8 @@ public class Menu {
             this.updateGame += 1;
             mode(statusGame, nextRow, nextColumn);
         } else if (this.updateGame == 4) {
-            System.out.println("Sem nenhum vencedor");
+            String winner =  "Sem nenhum vencedor";
+            endCycLe(winner);
             return;
         }
 
