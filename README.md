@@ -1,4 +1,4 @@
-# jogo_velha-Java
+Repositório destinado ao jogo da velha, implementado no Java.
 
 ## Jogo da velha
 
